@@ -1,0 +1,55 @@
+# Build results
+bin/
+obj/
+out/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Backup & generated files
+*.dbmdl
+*.bak
+*.backup
+*.ldf
+*.mdf
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotCover
+.idea/.dotCover
+
+# Others
+*.swp
+*.tmp
+*.log
+*.tlog
+*.cache
+*.config
+*.vspscc
+*.vssscc
+
+# Publish output
+publish/
