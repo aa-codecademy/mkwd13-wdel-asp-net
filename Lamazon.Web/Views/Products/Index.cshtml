@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ProductViewModel>
+
+    @{
+        Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+    }
+
+    <h2>Products</h2>
+
+    <div class="row">
+    @foreach(var product in Model)
+    {
+        @(await Html.PartialAsync("_ProductItem", product))
+    }
+
+    </div>

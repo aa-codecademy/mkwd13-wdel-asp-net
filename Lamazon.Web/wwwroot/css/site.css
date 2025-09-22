@@ -1,22 +1,280 @@
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.footer {
+    margin-top: 30px;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.product-image {
+    height: 100px;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.centered-content {
+    justify-content: center;
+}
+
+.footer-links {
+    padding-left: 0px;
+}
+
+    .footer-links > li {
+        list-style: none;
+    }
+
+.navbar-logo {
+    height: 40px;
+}
+
+.product-container {
+    border: 1px solid #444;
+    border-radius: 10px;
+    margin: 10px 20px;
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.product-content {
+    padding: 12px;
+    padding-top: 4px;
+}
+
+.product-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0px;
+}
+
+.product-category {
+    font-size: 14px;
+    font-style: italic;
+    color: #999;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product-content > hr {
+    margin: 4px 0px;
+}
+
+.product-description {
+    height: 100px;
+}
+
+    .product-description > p {
+        display: -webkit-box;
+        max-width: 100%;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+.notification-container {
+    position: relative;
+}
+
+.navbar .notification {
+    position: absolute;
+    top: 5px;
+    border: 1px solid #fff;
+    right: 0px;
+    font-size: 9px;
+    background: #f44336;
+    color: white;
+    min-width: 20px;
+    padding: 0px 5px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+}
+
+.hidden {
+    display: none;
+}
+
+.product-actions > .btn {
+    width: 100%;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.navbar-fixed {
+    position: fixed !important;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
+main {
+    margin-top: 95px;
+}
+
+.order-item {
+    padding: 20px 0px;
+}
+
+.order-item-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.order-item-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.order-item-description {
+    font-size: 14px;
+    font-style: italic;
+    color: #999;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.order-item-qty {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+}
+
+.btn-create-order {
+    width: 100%;
+    font-size: 20px;
+}
+
+.order-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+}
+
+.order-item-price {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.product-details-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.product-details-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    line-height: 1;
+}
+
+.product-details-category {
+    font-size: 18px;
+    font-style: italic;
+    color: #999;
+}
+
+.product-details-price {
+    font-size: 18px;
+}
+
+.product-details-description {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
+}
+
+p > del {
+    color: red;
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Lamazon.Services.Interfaces;
 using Lamazon.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +7,17 @@ namespace Lamazon.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductService productService)
         {
-            _logger = logger;
+            _productService = productService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var featuredProducts = _productService.GetAllFeaturedProducts();
+            return View(featuredProducts);
         }
 
         public IActionResult Privacy()

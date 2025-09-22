@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.InjectDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
-
+builder.Services.InjectRepositories();
+builder.Services.InjectServices();
+builder.Services.InjectAutoMapper();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

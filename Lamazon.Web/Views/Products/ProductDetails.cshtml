@@ -1,0 +1,24 @@
+﻿@model ProductViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-controller="Products" asp-action="Index">Back to products</a>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <img class="product-details-image" src="@Model.ImageUrl" />
+        </div>
+        <div class="col-md-6">
+            <p class="product-details-name">@Model.Name</p>
+            <p class="product-details-category">Category: @Model.ProductCategory.Name</p>
+            <p class="product-details-price">Price: $@Model.Price</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="product-details-description">@Model.Description</p>
+        </div>
+    </div>
+</div>
