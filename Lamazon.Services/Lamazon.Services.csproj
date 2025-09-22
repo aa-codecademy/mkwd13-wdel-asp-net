@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Lamazon.DataAccess\Lamazon.DataAccess.csproj" />
+    <ProjectReference Include="..\Lamazon.ViewModels\Lamazon.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

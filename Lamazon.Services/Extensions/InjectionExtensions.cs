@@ -1,4 +1,8 @@
 ﻿using Lamazon.DataAccess.DataContext;
+using Lamazon.DataAccess.Implementations;
+using Lamazon.DataAccess.Interfaces;
+using Lamazon.Services.Implementations;
+using Lamazon.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,5 +15,21 @@ namespace Lamazon.Services.Extensions
         {
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
         }
+
+        public static void InjectRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IProductRepository, ProductRepository>();
+        }
+
+        public static void InjectServices(this IServiceCollection services) 
+        {
+            services.AddScoped<IProductService, ProductService>();
+        }
+
+        public static void InjectAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
     }
 }

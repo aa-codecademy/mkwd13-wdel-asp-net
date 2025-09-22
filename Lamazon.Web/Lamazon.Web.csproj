@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Lamazon.Services\Lamazon.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
