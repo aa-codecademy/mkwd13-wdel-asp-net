@@ -129,5 +129,30 @@ namespace Lamazon.DataAccess.Extensions
             return modelBuilder;
         }
 
+
+        #region Users/Roles
+        public static ModelBuilder SeedRoles( this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Key = "admin", Name = "Administrator"},
+                new Role { Key = "user", Name = "User"}                
+                );
+
+            return modelBuilder;
+        }
+
+        public static ModelBuilder SeedUsers(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 1, FullName = "Admin User", RoleKey = "admin", Email = "admin@admin.com", PasswordHash = "AQAAAAEAACcQAAAAECJCSH7Y7+DSAD+UKEnb6fjgOROzppnUpop5/kVMcBDjzOVaLz0vts978iw4ooBhhQ==" }, //Admin123!
+                new User { Id = 2, FullName = "User", RoleKey = "user", Email = "user@user.com", PasswordHash = "AQAAAAEAACcQAAAAEH2PV/R1HciXgHqwrYcEp/32IrxaQ44wcbBnM6EHK2FXA5wZRYXN6pddtVKNqTpTxg==" } //User123!
+                );
+
+            return modelBuilder;
+        }
+
+
+        #endregion
+
     }
 }

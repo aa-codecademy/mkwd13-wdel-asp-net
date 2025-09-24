@@ -28,7 +28,9 @@ namespace Lamazon.DataAccess.DataContext
             modelBuilder.SeedProducts()
                 .SeedProductCategory()
                 .SeedProductCategoryStatus()
-                .SeedProductStatus();
+                .SeedProductStatus()
+                .SeedRoles()
+                .SeedUsers();
         }
 
         public DbSet<Invoice> Invoices { get; set; }
