@@ -1,0 +1,47 @@
+﻿@model UserCredentialsViewModel
+
+<div class="mt-5">
+    @using (Html.BeginForm())
+    {
+        <div class="row centered-content">
+            <div class="col-md-4">
+                <h4 class="login-title">Please login</h4>
+            </div>
+        </div>
+
+        <div class="row centered-content">
+            <div class="col-md-4 form-group">
+                <label asp-for="Email"></label>
+                <input class="form-control" type="text" asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row centered-content">
+            <div class="col-md-4 form-group">
+                <label asp-for="Password"></label>
+                <input class="form-control" type="text" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row centered-content">
+            <div class="col-md-4 form-group text-right">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </div>
+
+        <div class="row centered-content">
+            <div class="mt-2 text-center">
+                Don't have account ? <a asp-controller="Users" asp-action="Register">Register here</a>.
+            </div>
+        </div>
+
+        @if (ViewData.ModelState.ContainsKey("UserLoginError"))
+        {
+            <div class="mt-3 text-lg-center text-danger">
+                <h5>Login failed!</h5>
+                Message: @ViewData.ModelState["UserLoginError"].Errors.FirstOrDefault()?.ErrorMessage
+            </div>
+        }
+    }
+</div>

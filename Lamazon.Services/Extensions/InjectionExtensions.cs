@@ -25,6 +25,7 @@ namespace Lamazon.Services.Extensions
         public static void InjectServices(this IServiceCollection services) 
         {
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         public static void InjectAutoMapper(this IServiceCollection services)
