@@ -24,7 +24,62 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="~/lib/bootstrap-notify/js/bootstrap-notify.min.js"></script> 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+    <script>
+        $(".btn-add-to-cart").click(function () {
+            var clickedBtn = $(this);
+            var productId = clickedBtn.attr("data-id")
+
+            var dataToPost = {};
+            dataToPost.id = productId;
+
+            $.ajax({
+                type: "POST",
+                url: "Products/AddToCart",
+                data: dataToPost,
+                success: function(result) {
+                    debugger;
+                    updateShoppingCartItems(result.itemsCount);
+                    clickedBtn.parent().find(".btn-remove-from-cart").show();
+                    clickedBtn.hide();
+                },
+                error: function (error) {
+                    alert("ERROR!")
+                }
+            });
+        });
+
+        $(".btn-remove-from-cart").click(function () {
+            var clickedBtn = $(this);
+            var productId = clickedBtn.attr("data-id")
+
+            var dataToPost = {};
+            dataToPost.id = productId;
+
+            $.ajax({
+                type: "POST",
+                url: "Products/RemoveFromCart",
+                data: dataToPost,
+                success: function (result) {
+                    debugger;
+                    updateShoppingCartItems(result.itemsCount);
+                    clickedBtn.parent().find(".btn-add-to-cart").show();
+                    clickedBtn.hide();
+                },
+                error: function (error) {
+                    alert("ERROR!")
+                }
+            });
+        });
+    </script>
+    <script>
+        @if (TempData["NotificationMessage"] != null)
+        {
+                @:$.notify('@TempData["NotificationMessage"]', { allow_dismiss: true, type: 'success' })
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+﻿@model List<OrderLineItemViewModel>
+
+    <h2>Shopping Cart</h2>
+
+
+@using(Html.BeginForm("CreateOrder", "Orders", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+
+        <div class="col-md-8">
+            @for(int i = 0; i<Model.Count; i++)
+            {
+                var orderLineItem = Model[i];
+                @Html.HiddenFor(x => Model[i].DiscountPercentage);
+                @Html.HiddenFor(x => Model[i].Id);
+                @Html.HiddenFor(x => Model[i].ProductId);
+                @Html.HiddenFor(x => Model[i].ProductPrice);
+                @Html.HiddenFor(x => Model[i].ProductName);
+                @Html.HiddenFor(x => Model[i].Quantity);
+                @Html.HiddenFor(x => Model[i].TotalPrice);
+
+                <div class="row order-item">
+                    <div class="col-md-2">
+                        <img class="order-item-image" src="@orderLineItem.ProductImage" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Products" asp-action="ProductDetails" asp-route-id="@orderLineItem.ProductId"></a>
+                        <p class="order-item-name">@orderLineItem.ProductName</p>
+                        <p class="order-item-price">Price: $@orderLineItem.ProductPrice</p>
+                        <p class="order-item-description">@orderLineItem.ProductDescription</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                       <p class="order-label">Qty</p>
+                        <p class="order-value">@orderLineItem.Quantity</p>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <p class="order-label">Total</p>
+                        <p class="order-value">@orderLineItem.TotalPrice</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4 text-center pl-5">
+
+            <div class="w-100">
+                <p class="order-label"> Total: $@Model.Sum(x=>x.TotalPrice)</p>
+            </div>
+            <div class="w-100 text-center mt-3">
+                <button class="btn btn-create-order btn-success">Create Order</button>
+            </div>
+        </div>
+    </div>
+}

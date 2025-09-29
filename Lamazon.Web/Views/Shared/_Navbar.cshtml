@@ -19,8 +19,16 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link notification-container">
+                    <a asp-controller="Orders" asp-action="ShoppingCart" asp-area="" class="nav-link notification-container">
                         <i class="material-icons">shopping_cart</i>
+                        @if(ViewBag.ShoppingCartItemsCount > 0)
+                        {
+                            <span id="shoppingItemsCount" class="notification">@ViewBag.ShoppingCartItemsCount</span>
+                        }
+                        else
+                        {
+                            <span id="shoppingItemsCount" class="notification hidden">@ViewBag.ShoppingCartItemsCount</span>
+                        }
                     </a>
                 </li>
 
