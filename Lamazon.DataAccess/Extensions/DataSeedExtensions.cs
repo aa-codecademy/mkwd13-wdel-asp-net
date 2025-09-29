@@ -154,5 +154,27 @@ namespace Lamazon.DataAccess.Extensions
 
         #endregion
 
+
+        public static ModelBuilder SeedOrderStatuses(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderStatus>().HasData(
+                new OrderStatus { Id = 1, Name = "Pending"},
+                new OrderStatus { Id = 2, Name = "Accepted"},
+                new OrderStatus { Id = 3, Name = "Rejected"}                
+                );
+            return modelBuilder;
+        }
+
+        public static ModelBuilder SeedInvoiceStatuses(this ModelBuilder builder)
+        {
+            builder.Entity<InvoiceStatus>().HasData(
+                new InvoiceStatus { Id = 1, Name = "PendingPayment"},
+                new InvoiceStatus { Id = 2, Name = "Paid"},
+                new InvoiceStatus { Id = 3, Name = "Canceled"}                
+                );
+
+            return builder;
+        }
+
     }
 }
