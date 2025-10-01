@@ -10,11 +10,13 @@ namespace Lamazon.Web.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
+        private readonly IGeoTrackerService _geoTrackerService;
 
-        public OrdersController(IOrderService orderService, IProductService productService) 
+        public OrdersController(IOrderService orderService, IProductService productService, IGeoTrackerService geoTrackerService) 
         {
             _orderService = orderService;
             _productService = productService;
+            _geoTrackerService = geoTrackerService;
         }
 
         public IActionResult ShoppingCart()
@@ -62,9 +64,11 @@ namespace Lamazon.Web.Controllers
             orderViewModel.TotalAmount = orderLineItems.Sum(x=>x.TotalPrice);
             orderViewModel.OrderLineItems = orderLineItems;
 
-            orderViewModel.IpAddress = "123";
-            orderViewModel.CountryCode = "MK";
-            orderViewModel.CountryFlagUrl = "MK";
+            var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
+            orderViewModel.IpAddress = ipAddress != null ? ipAddress.ToString() : "123";
+            var ipGeoInfo = await _geoTrackerService.GetIpGeoInfoAsync(orderViewModel.IpAddress);
+            orderViewModel.CountryCode = ipGeoInfo.CountryCode;
+            orderViewModel.CountryFlagUrl = _geoTrackerService.GetCountryFlagUrl(ipGeoInfo.CountryCode);
 
             await _orderService.CreateOrder(orderViewModel);
 
