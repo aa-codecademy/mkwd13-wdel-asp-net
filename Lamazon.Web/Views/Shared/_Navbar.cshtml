@@ -41,7 +41,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             @if (User.IsAdmin())
                             {
-                                <a class="dropdown-item">Lamazon CMS</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="" asp-action="">Lamazon CMS</a>
                             }
                             <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
                         </div>

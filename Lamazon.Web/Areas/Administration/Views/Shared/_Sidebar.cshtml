@@ -1,0 +1,45 @@
+﻿<div class="sidebar">
+    <div class="logo">
+        <img src="~/images/lamazon.svg" alt="Logo" />
+    </div>
+    <div class="sidebar-wrapper ps-container ps-theme-default">
+        <ul class="nav">
+            <li is-active-route asp-controller="Home" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li is-active-route asp-controller="ProductCategories" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="ProductCategories" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Product Categories</p>
+                </a>
+            </li>
+            <li is-active-route asp-controller="Products" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Products" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Products</p>
+                </a>
+            </li>
+            <li is-active-route asp-controller="Users" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Users" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Users</p>
+                </a>
+            </li>
+            <li is-active-route asp-controller="Orders" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Orders" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Orders</p>
+                </a>
+            </li>
+            <li is-active-route asp-controller="Invoices" class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Invoices" asp-action="Index">
+                    <i class="material-icons">dashboard</i>
+                    <p>Invoices</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
