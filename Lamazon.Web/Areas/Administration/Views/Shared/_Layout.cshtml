@@ -1,0 +1,40 @@
+﻿<!DOCTYPE <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lamazon CMS</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/material-dashboard/assets/css/material-dashboard.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
+    <link rel="stylesheet" href="~/css/admin-site.css" />
+
+</head>
+    <body>
+        <div class="wrapper">
+            @Html.PartialAsync("_Sidebar").GetAwaiter().GetResult()
+            <div class="main-panel ps-container ps-theme-default ps-active-y">
+                @Html.PartialAsync("_Navbar").GetAwaiter().GetResult()
+                <div class="content">
+                    <div class="container-fluid">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            @Html.PartialAsync("_Footer").GetAwaiter().GetResult()
+        </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/core/popper.min.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/plugins/chartist.min.js"></script>
+    <script src="~/lib/material-dashboard/assets/js/material-dashboard.js"></script>
+    <script src="~/js/admin-site.js" asp-append-version="true"></script>
+    </body>
+</html>

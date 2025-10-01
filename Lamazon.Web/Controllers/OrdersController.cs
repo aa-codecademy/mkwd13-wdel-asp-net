@@ -2,10 +2,12 @@
 using Lamazon.Services.Interfaces;
 using Lamazon.ViewModels.Models;
 using Lamazon.Web.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lamazon.Web.Controllers
 {
+    [Authorize]
     public class OrdersController : BaseController
     {
         private readonly IOrderService _orderService;

@@ -5,6 +5,11 @@
     {
       "library": "bootstrap-notify@0.2.0",
       "destination": "wwwroot/lib/bootstrap-notify/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "material-dashboard@2.1.0",
+      "destination": "wwwroot/lib/material-dashboard"
     }
   ]
 }

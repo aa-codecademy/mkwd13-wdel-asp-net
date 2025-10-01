@@ -1,0 +1,151 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    overflow-y: hidden;
+}
+
+.product-image {
+    height: 100px;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.centered-content {
+    justify-content: center;
+}
+
+.action-button {
+    margin-left: 20px;
+}
+
+.column-actions {
+    width: 100px;
+    text-align: right;
+}
+
+.sidebar .nav li.active > a {
+    background-color: #634949;
+}
+
+.btn-add-new {
+    padding: 10px;
+}
+
+.main-panel > .content {
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.btn-search {
+    padding: 10px;
+}
+
+.txt-search {
+    min-width: 180px;
+}
+
+.dataTables_length {
+    padding-top: 3.5px;
+}
+
+.float-right {
+    justify-content: flex-end !important;
+}
+
+.ddl-search {
+    padding: 7px 10px;
+    min-width: 150px;
+}
+
+select.form-control {
+    height: 36px !important;
+}
+
+input[type=checkbox] {
+    width: 20px;
+}
+
+.order-country-flag {
+    height: 24px;
+}
+
+.preview-table > thead > tr > th {
+    color: #999;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.preview-table > tbody > tr > td {
+    font-size: 14px;
+}
+
+.product-featured-checkbox {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-top: 7px;
+    margin-left: 2px;
+}
