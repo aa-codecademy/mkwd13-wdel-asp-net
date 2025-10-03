@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lamazon.Domain.Entities;
+using Lamazon.Entities.Models;
 using Lamazon.ViewModels.Models;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Lamazon.Services.AutoMapperProfiles
                    .ForMember(x => x.ProductCategoryStatus, opt => opt.Ignore())
                    .ForMember(x => x.ProductCategoryStatusId,
                                    opt => opt.MapFrom(s => s.ProductCategoryStatus));
+
+            CreateMap<PageResultModel<ProductCategory>, PagedResultViewModel<ProductCategoryViewModel>>();
 
         }
     }

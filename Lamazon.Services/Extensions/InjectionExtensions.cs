@@ -22,6 +22,7 @@ namespace Lamazon.Services.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IDashboardRepository, DashboardRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
         }
 
         public static void InjectServices(this IServiceCollection services) 
