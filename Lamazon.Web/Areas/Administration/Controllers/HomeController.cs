@@ -1,4 +1,5 @@
 ﻿using Lamazon.Entities.Constants;
+using Lamazon.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,13 +9,17 @@ namespace Lamazon.Web.Areas.Administration.Controllers
     [Authorize(Roles = Roles.Admin)]
     public class HomeController : ControllerBase
     {
-        public HomeController()         
+        private readonly IDashboardService _dashboardService;
+
+        public HomeController(IDashboardService dashboardService)         
         {
          PageName = "Dashboard";
+          _dashboardService = dashboardService;
         }
         public IActionResult Index()
         {
-            return View();
+            var dashboardViewModel = _dashboardService.GetDashboardData();
+            return View(dashboardViewModel);
         }
     }
 }
