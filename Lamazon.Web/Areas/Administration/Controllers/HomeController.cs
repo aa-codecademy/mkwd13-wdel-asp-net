@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lamazon.Web.Areas.Administration.Controllers
 {
-    [Area("Administration")]
-    [Authorize(Roles = Roles.Admin)]
+
     public class HomeController : ControllerBase
     {
         private readonly IDashboardService _dashboardService;

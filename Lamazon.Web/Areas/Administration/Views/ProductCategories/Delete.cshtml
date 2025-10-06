@@ -1,5 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model ProductCategoryViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id) 
+
+    <div class="card">
+        <div class="card-header">
+            <p>Delete</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group bmd-form-group" >  
+                        <label asp-for="Name" class="bmd-label-floating"></label>
+                        <input asp-for="Name" class="form-control" disabled />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer float-right">
+            <div class="mt-5">
+                <a class="btn btn-default" asp-controller="ProductCategories" asp-action="Index">Cancel</a>
+                <button class="btn btn-danger ms-2" type="button" onclick="$('#ConfirmDeleteModal').modal('show')">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ConfirmDeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete product category</h4>
+                    <a class="close float-end" data-dismiss="modal">x</a>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete "@Model.Name"?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" onclick="$('#ConfirmDeleteModal').modal('hide')" data-dismiss="modal">Cancel</button>
+                    <button class="ml-2 btn btn-danger" type="submit">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
