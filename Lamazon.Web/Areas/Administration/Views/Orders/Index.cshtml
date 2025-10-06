@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OrderViewModel>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <form class="form-inline">
+                    <input id="inputSearch" class="form-control txt-search" placeholder="Search products"/>
+                    <button class="btn btn-search btn-info" type="button" onclick="searchItems()">
+                        <i class="material-icons">search</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table id="ordersTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                     <th>@Html.DisplayNameFor(model => model.OrderNumber)</th>
+              
+                    <th>@Html.DisplayNameFor(model => model.User)</th>
+               
+                    <th>@Html.DisplayNameFor(model => model.CountryCode)</th>
+                
+                    <th>@Html.DisplayNameFor(model => model.CountryFlagUrl)</th>
+                
+                    <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
+                
+                    <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>

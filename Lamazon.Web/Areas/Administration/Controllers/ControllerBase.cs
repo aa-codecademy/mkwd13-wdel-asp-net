@@ -15,5 +15,10 @@ namespace Lamazon.Web.Areas.Administration.Controllers
             ViewBag.PageName = PageName;    
             base.OnActionExecuting(context);
         }
+
+        protected void AddNotificationMessage(string message)
+        {
+            TempData["NoticationMessage"] = message;
+        }
     }
 }

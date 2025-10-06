@@ -10,5 +10,11 @@ namespace Lamazon.Services.Interfaces
     public interface IOrderService
     {
         Task CreateOrder(OrderViewModel orderViewModel);
+        Task AcceptOrder(int id);
+        Task RejectedOrder(int id);
+        Task<OrderViewModel> GetById(int id);
+        Task<PagedResultViewModel<OrderViewModel>> GetFilteredOrders
+                                    (DatatableRequestViewModel datatableRequestViewModel);
+
     }
 }

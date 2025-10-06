@@ -1,4 +1,5 @@
 ﻿using Lamazon.Domain.Entities;
+using Lamazon.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,10 @@ namespace Lamazon.DataAccess.Interfaces
     {
         Task<int> GetMaxIdAsync();
         Task<int> InsertAsync(Order order);
+        Task UpdateAsync(Order order);
+        Task<Order> GetByIdAsync(int id);
+        Task<PageResultModel<Order>> GetFilteredOrdersAsync
+            (int startIndex, int count, string searchValue, string orderByColumn, bool isAscending);
+
     }
 }

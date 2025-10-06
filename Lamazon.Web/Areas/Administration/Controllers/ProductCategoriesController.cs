@@ -60,7 +60,7 @@ namespace Lamazon.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 _productCategoriesService.UpdateProductCategory(productCategoryViewModel);
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(productCategoryViewModel);
         }
