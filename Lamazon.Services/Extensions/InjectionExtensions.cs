@@ -33,6 +33,7 @@ namespace Lamazon.Services.Extensions
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IDashboardService , DashboardService>();
             services.AddScoped<IProductCategoriesService, ProductCategoriesService>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
             
         }
 
