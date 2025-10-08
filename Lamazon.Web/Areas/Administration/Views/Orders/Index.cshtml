@@ -34,3 +34,74 @@
             </table>
         </div>
     </div>
+
+@section Scripts {
+    <script>
+        var ordersTable = $("#ordersTable").DataTable({
+            processing: true,
+            serverSide: true,
+            dom: '<i<t><"custom-class"l>p>',
+            ajax: {
+                url: "/Administration/Orders/GetOrders",
+                type: "POST",
+                data: function(data) {
+                    var searchValue = $("#inputSearch").val();
+                    data.search.value = searchValue;
+                }
+            },
+            columns: [
+                {
+                    data: "orderNumber",
+                    name: "OrderNumber"
+                },
+                {
+                    data: "user.fullName",
+                    name: "User.FullName"
+                },
+                {
+                    data: "countryCode",
+                    name: "CountryCode"
+                },
+                {
+                    data: "countryFlagUrl",
+                    sClass: "text-center",
+                    orderable: false,
+                    render: function(data, type, row, meta) {
+                        return `<img class='order-country-flag' src='${data}' />`
+                    }
+                },
+                {
+                    sClass: "text-right",
+                    data: "totalAmount",
+                    name: "TotalAmount"
+                },
+                {
+                    sClass: "text-center",
+                    data: "orderStatusString",
+                    name: "OrderStatus"
+                },
+                {
+                    data: "id",
+                    orderable: false,
+                    sClass: "column-actions",
+                    render: function(data, type, row, meta) {
+                        return `<a class="action-button text-warning" href="/Administration/Orders/Edit/${data}"><i class="material-icons">edit</i></a>`
+                    }
+                }
+            ]
+        });
+
+        $("#inputSearch").on("keydown", function (e) {
+            var key = e.which;
+            if (key == 13) { // 13 == Enter button on keyboard
+                searchItems();
+                e.preventDefault();
+            }
+        })
+
+        function searchItems() {
+            ordersTable.ajax.reload();
+        }
+    </script>
+    }
+

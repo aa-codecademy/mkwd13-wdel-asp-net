@@ -1,5 +1,103 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model OrderViewModel
+
+<div class="card">
+    <div class="card-header">
+        <p>Edit</p>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="OrderNumber" class="bmd-label-floating"></label>
+                    <input asp-for="OrderNumber" class="form-control" disabled /> 
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="OrderDate" class="bmd-label-floating"></label>
+                    <input asp-for="OrderDate" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6">
+                 <div class="form-group bmd-form-group">
+                     <label asp-for="User.FullName" class="bmd-label-floating"></label>
+                     <input asp-for="User.FullName" class="form-control" disabled />
+                 </div>
+              </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="User.Email" class="bmd-label-floating"></label>
+                    <input asp-for="User.Email" class="form-control" disabled />
+                </div>
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="TotalAmount" class="bmd-label-floating"></label>
+                    <input asp-for="TotalAmount" class="form-control" disabled />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="CountryCode" class="bmd-label-floating"></label>
+                    <input asp-for="CountryCode" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group bmd-form-group">
+                  <label asp-for="OrderStatus" class="bmd-label-floating"></label>
+                  <input asp-for="OrderStatusString" class="form-control" disabled />
+              </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <table id="ordersTable" class="table table-striped table-hover preview-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th class="text-right">Product Price</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-right">Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int counter = 1;
+
+                            foreach (var orderLineItem in Model.OrderLineItems)
+                            {
+                                <tr>
+                                <td>@counter</td>
+                                <td>@orderLineItem.ProductName</td>
+                                    <td class="text-right">@orderLineItem.ProductPrice</td>
+                                    <td class="text-center">@orderLineItem.Quantity</td>
+                                    <td class="text-right">@orderLineItem.TotalPrice</td>
+                                
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer mt-5">
+        <div class="float-left">
+            @if(Model.OrderStatus == OrderStatusEnum.Pending)
+            {
+                <button class="btn btn-danger ms-2 mr-3" type="button" onclick="$('#ConfirmRejectModal').modal('show')">Reject</button>
+                <button class="btn btn-success ms-2 mr-3" type="button" onclick="$('#ConfirmAcceptModal').modal('show')">Accept</button>
+            }
+        </div>
+        <div class="float-right">
+            <a class="btn btn-default" asp-controller="Orders" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</div>
