@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lamazon.Domain.Entities;
+using Lamazon.Entities.Models;
 using Lamazon.ViewModels.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace Lamazon.Services.AutoMapperProfiles
             CreateMap<OrderLineItem, OrderLineItemViewModel>()
                 .ReverseMap()
                 .ForMember(x=>x.Product, opt => opt.Ignore());
-        
+
+
+            CreateMap<PageResultModel<Order>, PagedResultViewModel<OrderViewModel>>().ReverseMap();
         }
     }
 }
