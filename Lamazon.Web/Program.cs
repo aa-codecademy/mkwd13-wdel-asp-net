@@ -13,6 +13,7 @@ builder.Services.InjectDbContext(builder.Configuration.GetConnectionString("Defa
 builder.Services.InjectRepositories();
 builder.Services.InjectServices();
 builder.Services.InjectAutoMapper();
+builder.Services.InjectFluentValidators();
 
 builder.Services.AddHttpClient<IGeoTrackerService, GeoTrackerService>();
 

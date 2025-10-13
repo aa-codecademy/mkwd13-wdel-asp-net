@@ -1,0 +1,146 @@
+﻿@model InvoiceViewModel
+
+<div class="card">
+    <div class="card-header">
+        <p>Edit</p>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="InvoiceNumber" class="bmd-label-floating"></label>
+                    <input asp-for="InvoiceNumber" class="form-control" disabled />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="InvoiceDate" class="bmd-label-floating"></label>
+                    <input asp-for="InvoiceDate" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="User.FullName" class="bmd-label-floating"></label>
+                    <input asp-for="User.FullName" class="form-control" disabled />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="User.Email" class="bmd-label-floating"></label>
+                    <input asp-for="User.Email" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="TotalAmount" class="bmd-label-floating"></label>
+                    <input asp-for="TotalAmount" class="form-control" disabled />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="InvoiceStatus" class="bmd-label-floating"></label>
+                    <input asp-for="InvoiceStatusString" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <table id="ordersTable" class="table table-striped table-hover preview-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th class="text-right">Product Price</th>
+                            <th class="text-center">Qty</th>
+                            <th class="text-right">Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int counter = 1;
+
+                            foreach (var orderLineItem in Model.InvoiceLineItems)
+                            {
+                                <tr>
+                                    <td>@counter</td>
+                                    <td>@orderLineItem.ProductName</td>
+                                    <td class="text-right">@orderLineItem.ProductPrice</td>
+                                    <td class="text-center">@orderLineItem.Quantity</td>
+                                    <td class="text-right">@orderLineItem.TotalPrice</td>
+                                </tr>
+                                counter++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer mt-5">
+        <div class="float-left">
+            @if (Model.InvoiceStatus == InvoiceStatusEnum.PendingPayment)
+            {
+                <button class="btn btn-danger ms-2 mr-3" onclick="$('#ConfirmCancelModal').modal('show')" type="button">Cancel Invoice</button>
+                <button class="btn btn-success ms-2 mr-3" type="button" onclick="$('#ConfirmPaidModal').modal('show')">Set as paid</button>
+            }
+        </div>
+        <div class="float-right">
+            <a class="btn btn-default" asp-controller="Invoices" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("CancelInvoice", "Invoices"))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="modal fade" id="ConfirmCancelModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cancel invoice</h4>
+                    <a class="close float-end" data-dismiss="modal" onclick="$('#ConfirmCancelModal').modal('hide')">×</a>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to cancel the invoice "@Model.InvoiceNumber"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#ConfirmCancelModal').modal('hide')">Cancel</button>
+                    <button class="ml-2 btn btn-danger" type="submit">Confirm Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("SetAsPaid", "Invoices"))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="modal fade" id="ConfirmPaidModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Set Invoice As Paid</h4>
+                    <a class="close float-end" data-dismiss="modal" onclick="$('#ConfirmPaidModal').modal('hide')">×</a>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to mark as paid the invoice "@Model.InvoiceNumber"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#ConfirmPaidModal').modal('hide')">Cancel</button>
+                    <button class="ml-2 btn btn-success" type="submit">Set As Paid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

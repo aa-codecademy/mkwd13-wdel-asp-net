@@ -8,8 +8,8 @@ namespace Lamazon.Entities.Enums
 {
     public enum InvoiceStatusEnum
     {
-        Canceled = 1,
+        Canceled = 3,
         Paid = 2,
-        PendingPayment = 3
+        PendingPayment = 1
     }
 }

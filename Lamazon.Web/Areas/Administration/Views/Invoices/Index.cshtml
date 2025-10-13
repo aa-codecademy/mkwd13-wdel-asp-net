@@ -1,0 +1,97 @@
+﻿@model IEnumerable<InvoiceViewModel>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-end">
+            <form class="form-inline">
+                <input id="inputSearch" class="form-control txt-search" placeholder="Search invoices by number" />
+                <button class="btn btn-search btn-info" type="button" onclick="searchItems()"><i class="material-icons">search</i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table id="invoicesTable" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Invoice number
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                    <th class="text-right">
+                        @Html.DisplayNameFor(model => model.TotalAmount)
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayNameFor(model => model.InvoiceStatus)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let invoiceTable = $('#invoicesTable').DataTable({
+            processing: true,
+            serverSide: true,
+            dom: '<i<t><"custom-class"l>p>',
+            ajax: {
+                url: "/Administration/Invoices/GetInvoices",
+                type: "POST",
+                data: function(data) {
+                    let searchValue = $('#inputSearch').val();
+
+                    data.search.value = searchValue;
+                }
+            },
+            columns: [
+                {
+                    data: "invoiceNumber",
+                    name: "InvoiceNumber"
+                },
+                {
+                    data: "user.fullName",
+                    name: "User.FullName"
+                },
+                {
+                    sClass: "text-right",
+                    data: "totalAmount",
+                    name: "TotalAmount"
+                },
+                {
+                    sClass: "text-center",
+                    data: "invoiceStatusString",
+                    name: "InvoiceStatus"
+                },
+                {
+                    data: "id",
+                    sClass: "column-actions",
+                    render: function (data, type, row, meta) {
+                        return `<a class="action-button text-warning" href="/Administration/Invoices/Edit/${data}"><i class="material-icons">edit</i></a>`
+                    },
+                    orderable: false
+                }
+            ]
+        })
+
+        $("#inputSearch").on("keydown", function (e) {
+            var key = e.which;
+            if (key == 13) { // 13 == Enter button on keyboard
+                searchItems();
+                e.preventDefault();
+            }
+        })
+
+        function searchItems() {
+            invoiceTable.ajax.reload();
+        }
+
+
+    </script>
+}

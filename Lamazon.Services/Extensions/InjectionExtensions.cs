@@ -1,8 +1,11 @@
-﻿using Lamazon.DataAccess.DataContext;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Lamazon.DataAccess.DataContext;
 using Lamazon.DataAccess.Implementations;
 using Lamazon.DataAccess.Interfaces;
 using Lamazon.Services.Implementations;
 using Lamazon.Services.Interfaces;
+using Lamazon.Services.ViewModelValidators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -40,6 +43,16 @@ namespace Lamazon.Services.Extensions
         public static void InjectAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        public static void InjectFluentValidators(this IServiceCollection services)
+        {
+            services.AddFluentValidationAutoValidation(s =>
+            s.DisableDataAnnotationsValidation = true
+                );
+
+            services.AddValidatorsFromAssemblyContaining<ProductViewModelValidator>();
+            services.AddValidatorsFromAssemblyContaining<ProductCategoryViewModelValidator>();
         }
 
     }
