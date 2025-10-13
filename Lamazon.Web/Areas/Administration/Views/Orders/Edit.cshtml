@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="form-group bmd-form-group">
                     <label asp-for="OrderNumber" class="bmd-label-floating"></label>
-                    <input asp-for="OrderNumber" class="form-control" disabled /> 
+                    <input asp-for="OrderNumber" class="form-control" disabled />
                 </div>
             </div>
             <div class="col-md-6">
@@ -19,20 +19,23 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-             <div class="col-md-6">
-                 <div class="form-group bmd-form-group">
-                     <label asp-for="User.FullName" class="bmd-label-floating"></label>
-                     <input asp-for="User.FullName" class="form-control" disabled />
-                 </div>
-              </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="User.FullName" class="bmd-label-floating"></label>
+                    <input asp-for="User.FullName" class="form-control" disabled />
+                </div>
+            </div>
+
             <div class="col-md-6">
                 <div class="form-group bmd-form-group">
                     <label asp-for="User.Email" class="bmd-label-floating"></label>
                     <input asp-for="User.Email" class="form-control" disabled />
                 </div>
             </div>
-         </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group bmd-form-group">
@@ -40,6 +43,7 @@
                     <input asp-for="TotalAmount" class="form-control" disabled />
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="form-group bmd-form-group">
                     <label asp-for="CountryCode" class="bmd-label-floating"></label>
@@ -47,13 +51,14 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-          <div class="col-md-6">
-              <div class="form-group bmd-form-group">
-                  <label asp-for="OrderStatus" class="bmd-label-floating"></label>
-                  <input asp-for="OrderStatusString" class="form-control" disabled />
-              </div>
-          </div>
+            <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                    <label asp-for="OrderStatus" class="bmd-label-floating"></label>
+                    <input asp-for="OrderStatusString" class="form-control" disabled />
+                </div>
+            </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-12">
@@ -74,13 +79,13 @@
                             foreach (var orderLineItem in Model.OrderLineItems)
                             {
                                 <tr>
-                                <td>@counter</td>
-                                <td>@orderLineItem.ProductName</td>
+                                    <td>@counter</td>
+                                    <td>@orderLineItem.ProductName</td>
                                     <td class="text-right">@orderLineItem.ProductPrice</td>
                                     <td class="text-center">@orderLineItem.Quantity</td>
                                     <td class="text-right">@orderLineItem.TotalPrice</td>
-                                
                                 </tr>
+                                counter++;
                             }
                         }
                     </tbody>
@@ -88,9 +93,10 @@
             </div>
         </div>
     </div>
+
     <div class="card-footer mt-5">
         <div class="float-left">
-            @if(Model.OrderStatus == OrderStatusEnum.Pending)
+            @if (Model.OrderStatus == OrderStatusEnum.Pending)
             {
                 <button class="btn btn-danger ms-2 mr-3" type="button" onclick="$('#ConfirmRejectModal').modal('show')">Reject</button>
                 <button class="btn btn-success ms-2 mr-3" type="button" onclick="$('#ConfirmAcceptModal').modal('show')">Accept</button>
@@ -101,3 +107,57 @@
         </div>
     </div>
 </div>
+
+@using (Html.BeginForm("RejectOrder", "Orders"))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="modal fade" id="ConfirmRejectModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reject order</h4>
+                    <a class="close float-end" onclick="$('#ConfirmRejectModal').modal('hide')" data-dismiss="modal">×</a>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to reject order "@Model.OrderNumber"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="$('#ConfirmRejectModal').modal('hide')" data-dismiss="modal">Cancel</button>
+                    <button class="ml-2 btn btn-danger" type="submit">Confirm Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@using (Html.BeginForm("AcceptOrder", "Orders"))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="modal fade" id="ConfirmAcceptModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Accept order</h4>
+                    <a class="close float-end" onclick="$('#ConfirmAcceptModal').modal('hide')" data-dismiss="modal">×</a>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to accept order "@Model.OrderNumber"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="$('#ConfirmAcceptModal').modal('hide')" data-dismiss="modal">Cancel</button>
+                    <button class="ml-2 btn btn-success" type="submit">Confirm Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    <script>
+        $("#ordersTable").DataTable();
+    </script>
+}

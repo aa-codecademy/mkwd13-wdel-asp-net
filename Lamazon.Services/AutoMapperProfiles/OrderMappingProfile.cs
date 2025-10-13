@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lamazon.Domain.Entities;
+using Lamazon.Entities.Enums;
 using Lamazon.Entities.Models;
 using Lamazon.ViewModels.Models;
 using System;
@@ -27,6 +28,17 @@ namespace Lamazon.Services.AutoMapperProfiles
 
 
             CreateMap<PageResultModel<Order>, PagedResultViewModel<OrderViewModel>>().ReverseMap();
+
+            CreateMap<Order, Invoice>()
+                .ForMember(x=>x.Id, opt => opt.Ignore())
+                .ForMember(x=>x.OrderId, opt => opt.MapFrom(y=> y.Id))
+                .ForMember(x=>x.InvoiceDate, opt => opt.MapFrom(y => DateTime.Now))
+                .ForMember(x=>x.InvoiceStatusId, opt => opt.MapFrom(y=> (int) InvoiceStatusEnum.PendingPayment))
+                .ForMember(x=>x.InvoiceLineItems, opt => opt.MapFrom(y=> y.OrderLineItems));
+
+            CreateMap<OrderLineItem, InvoiceLineItem>()
+                .ForMember(x => x.Id, opt => opt.Ignore())
+                .ForMember(x => x.OrderLineItemId, opt => opt.MapFrom(y => y.Id));
         }
     }
 }
