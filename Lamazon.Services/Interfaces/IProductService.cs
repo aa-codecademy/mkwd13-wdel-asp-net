@@ -12,5 +12,9 @@ namespace Lamazon.Services.Interfaces
         List<ProductViewModel> GetAllProducts();
         List<ProductViewModel> GetAllFeaturedProducts();
         ProductViewModel GetProductById(int id);
+        void CreateProduct(ProductViewModel model);
+        void UpdateProduct(ProductViewModel model);
+        void DeleteProduct(int id);
+        PagedResultViewModel<ProductViewModel> GetFilteredProducts(ProductsDatatableRequestViewModel model);
     }
 }

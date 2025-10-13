@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ProductViewModel>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-success btn-add-new" asp-controller="Products" asp-action="Create"><i class="material-icons">add</i></a>
+
+            <form class="form-inline">
+                @Html.DropDownList("ProductCategoryId", (SelectList)ViewBag.ProductCategoryList, "Select category", new { @class = "form-control ddl-search mr-2" })
+
+                <input id="inputSearch" class="form-control txt-search" placeholder="Search products" />
+                <button class="btn btn-search btn-info" type="button" onclick="searchItems()"><i class="material-icons">search</i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table id="productsTable" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductCategory)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let productsTable = $("#productsTable").DataTable({
+            processing: true,
+            serverSide: true,
+            dom: '<i<t><"custom-class">p>',
+            ajax: {
+                url: "/Administration/Products/GetProducts",
+                type: "POST",
+                data: function(data) {
+                    let searchValue = $("#inputSearch").val();
+                    let selectedCategoryId = $("#ProductCategoryId").val();
+
+                    data.search.value = searchValue;
+                    data.categoryId = selectedCategoryId;
+                }
+            },
+            columns: [
+                {
+                    data: "name",
+                    name: "Name"
+                },
+                {
+                    data: "productCategory.name",
+                    name: "ProductCategory.Name"
+                },
+                {
+                    data: "price",
+                    name: "Price"
+                },
+                {
+                    data: "id",
+                    sClass: "column-actions",
+                    render: function(data, type, row, meta){
+                        return `<a class="action-button text-warning" href="/Administration/Products/Edit/${data}"><i class="material-icons">edit</i></a>
+                                <a class="action-button text-danger" href="/Administration/Products/Delete/${data}"><i class="material-icons">delete</i></a>`
+                    }
+                }
+            ]
+        })
+
+        $("#inputSearch").on("keydown", function (e) {
+            var key = e.which;
+            if (key == 13) { // 13 == Enter button on keyboard
+                searchItems();
+                e.preventDefault();
+            }
+        })
+
+        function searchItems(){
+            productsTable.ajax.reload();
+        }
+
+        $("#ProductCategoryId").on("change", function() {
+            searchItems();
+        })
+
+    </script>
+}

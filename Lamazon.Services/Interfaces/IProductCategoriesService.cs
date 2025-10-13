@@ -17,5 +17,7 @@ namespace Lamazon.Services.Interfaces
         PagedResultViewModel<ProductCategoryViewModel> 
             GetPagedResultViewModel(DatatableRequestViewModel datatableRequestViewModel);
 
+        List<ProductCategoryViewModel> GetAllProductCategories();
+
     }
 }

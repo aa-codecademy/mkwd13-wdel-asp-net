@@ -10,6 +10,7 @@ namespace Lamazon.DataAccess.Interfaces
 {
     public interface IProductCategoryRepository
     {
+        List<ProductCategory> GetAll();
         int Insert(ProductCategory productCategory);
         void Update (ProductCategory productCategory);
         void DeleteById(int id);
